@@ -27,7 +27,7 @@ public class Registro extends AppCompatActivity {
     public  EditText Pass;
     public EditText Nacionalidad;
    public Button registar;
-
+    public Button volver;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -57,7 +57,13 @@ public class Registro extends AppCompatActivity {
 
             }
         });
-
+        volver=findViewById(R.id.buttonvolver);
+        volver.setOnClickListener(new View.OnClickListener() {
+    @Override
+    public void onClick(View view) {
+        finalizarActividad();
+    }
+});
     }
 
     public void registar(String email,String clave,String nacionalidad){
@@ -78,7 +84,7 @@ public class Registro extends AppCompatActivity {
     }
     private void finalizarActividad() {
         //Lanzar actividad pantalla provincias
-        Intent intent = new Intent(this, Provincias.class);
+        Intent intent = new Intent(this, Login.class);
         startActivity(intent);
         //Finalizar actividad
         finish();
