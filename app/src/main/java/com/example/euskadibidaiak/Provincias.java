@@ -23,7 +23,7 @@ Button volvemos;
         setContentView(R.layout.activity_provincias);
         lista=(ListView)findViewById(R.id.milista);
         lista.setAdapter(new Adaptador(this,datos,datosimag));
-        volvemos.findViewById(R.id.bvolv);
+        volvemos=findViewById(R.id.bvolv);
         volvemos.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

@@ -2,6 +2,7 @@ package com.example.euskadibidaiak;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Color;
@@ -40,6 +41,7 @@ public class CambiarContrasenia extends AppCompatActivity {
                     Toast.makeText(getApplicationContext(),"por favor rellene todos los campos",Toast.LENGTH_SHORT).show();
                 }else{
                     cambiarContrasenia(passAntigua,pass);
+                    finalizarActividad();
                 }
             }
         });
@@ -96,4 +98,14 @@ public class CambiarContrasenia extends AppCompatActivity {
         }
         db.close();
     }
+
+    private void finalizarActividad() {
+        //Lanzar actividad pantalla provincias
+        Intent intent = new Intent(this, menu.class);
+        startActivity(intent);
+        //Finalizar actividad
+        finish();
+    }
+
+
 }

@@ -10,6 +10,7 @@ import androidx.work.NetworkType;
 import androidx.work.OneTimeWorkRequest;
 import androidx.work.WorkManager;
 
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -152,7 +153,7 @@ public Button registrarse;
 
     private void sesion(String user, String pPassword) {
         //Proceso de login
-        SharedPreferences pref = getSharedPreferences("MyPref");
+        SharedPreferences pref = getSharedPreferences("MyPref", Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = pref.edit();
         editor.putString("username", user);
         editor.putString("password", pPassword);
@@ -162,9 +163,7 @@ public Button registrarse;
         Toast.makeText(getApplicationContext(), welcome, Toast.LENGTH_LONG).show();
     }
 
-    private SharedPreferences getSharedPreferences(String myPref) {
-        return getSharedPreferences(myPref);
-    }
+
 
 
 }

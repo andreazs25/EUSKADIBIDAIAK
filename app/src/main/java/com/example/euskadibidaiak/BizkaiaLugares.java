@@ -1,10 +1,18 @@
 package com.example.euskadibidaiak;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.NotificationCompat;
+import androidx.core.app.NotificationManagerCompat;
 
+import android.app.Notification;
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.sqlite.SQLiteDatabase;
+import android.graphics.Color;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -41,6 +49,8 @@ public boolean insertado;
         volver=findViewById(R.id.volver);
 
 
+
+
 volver.setOnClickListener(new View.OnClickListener() {
     @Override
     public void onClick(View view) {
@@ -54,7 +64,8 @@ valoS.setOnRatingBarChangeListener(new RatingBar.OnRatingBarChangeListener() {
         SharedPreferences pref = getApplicationContext().getSharedPreferences("MyPref",0);
         String pUsuario = pref.getString("username", "");
         insert(biz,san, Float.toString(v),pUsuario);
-
+        createNotificationChannel();
+        createNotification();
         Toast.makeText(getApplicationContext(),"has calificado con:"+v+" ",Toast.LENGTH_SHORT).show();
     }
 });
@@ -95,7 +106,30 @@ valoB.setOnRatingBarChangeListener(new RatingBar.OnRatingBarChangeListener() {
         finish();
     }
 
+    private void createNotificationChannel(){
+        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.O){
+            CharSequence name = "Noticacion";
+            NotificationChannel notificationChannel = new NotificationChannel("NOTIFICACION", name, NotificationManager.IMPORTANCE_DEFAULT);
+            NotificationManager notificationManager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
+            notificationManager.createNotificationChannel(notificationChannel);
+        }
+    }
 
+    private void createNotification(){
+        final  int NOTIFICACION_ID = 0;
+        NotificationCompat.Builder builder = new NotificationCompat.Builder(getApplicationContext(),"NOTIFICACION");
+        builder.setSmallIcon(R.drawable.ic_stat_name);
+        builder.setContentTitle("Notificacion Android");
+        builder.setContentText("tu valoracion ha sido guardada");
+        builder.setColor(Color.BLUE);
+        builder.setPriority(NotificationCompat.PRIORITY_DEFAULT);
+        builder.setLights(Color.MAGENTA, 1000, 1000);
+        builder.setVibrate(new long[]{1000,1000,1000,1000,1000});
+        builder.setDefaults(Notification.DEFAULT_SOUND);
+
+        NotificationManagerCompat notificationManagerCompat = NotificationManagerCompat.from(getApplicationContext());
+        notificationManagerCompat.notify(NOTIFICACION_ID, builder.build());
+    }
 
 
 }

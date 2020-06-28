@@ -9,39 +9,53 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity"></activity>
-        <activity android:name=".CambiarContrasenia" />
+        <activity android:name=".menu">
+            <intent-filter>
+
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+
+        </activity>
+        <activity android:name=".CambiarContrasenia">
+        <intent-filter>
+
+
+            <category android:name="android.intent.category.LAUNCHER" />
+        </intent-filter>
+    </activity>
+
         <activity android:name=".GuipuzkoaLugares">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
         <activity android:name=".AlavaLugares">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
         <activity android:name=".BizkaiaLugares">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
         <activity android:name=".Provincias">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
         <activity android:name=".Registro">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
