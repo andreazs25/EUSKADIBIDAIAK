@@ -9,7 +9,7 @@
     tools:context=".Provincias">
 
     <ImageView
-        android:id="@+id/imageView"
+        android:id="@+id/imageBizkaia"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -20,7 +20,7 @@
         app:srcCompat="@drawable/bi" />
 
     <ImageView
-        android:id="@+id/imageView2"
+        android:id="@+id/imageAlava"
         android:layout_width="332dp"
         android:layout_height="151dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -32,7 +32,7 @@
         app:srcCompat="@drawable/ar" />
 
     <ImageView
-        android:id="@+id/imageView3"
+        android:id="@+id/imageGuipuzkoa"
         android:layout_width="239dp"
         android:layout_height="126dp"
         app:layout_constraintBottom_toBottomOf="parent"

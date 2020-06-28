@@ -4,12 +4,11 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 
-public class Provincias extends AppCompatActivity {
+public class CambiarContrasenia extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_provincias);
-
+        setContentView(R.layout.activity_cambiar_contrasenia);
     }
 }

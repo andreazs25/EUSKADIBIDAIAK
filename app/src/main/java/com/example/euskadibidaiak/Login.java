@@ -15,6 +15,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.net.http.SslCertificate;
 import android.os.Bundle;
 import android.provider.ContactsContract;
 import android.text.Editable;
@@ -43,40 +44,38 @@ public Button registrarse;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.login);
-        ConexionSQLiteHelper conn= new ConexionSQLiteHelper(this,"bd Usuario",null,1);
+        ConexionSQLiteHelper conn= new ConexionSQLiteHelper(this,"bdUsuario",null,1);
         email=findViewById(R.id.emailedi);
         pass=findViewById(R.id.clavelogin);
         login=findViewById(R.id.buttonLogin);
 
         login.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                String pEmail=email.getText().toString();
-                String pPass=pass.getText().toString();
-                if(email.equals(" ")|| pass.equals(" ")){
-                    createSimpleDialog();
-                }else if(!Gestor.getGestor().esEmail(pEmail)){
-                    Toast.makeText(getApplicationContext(),"el email debe estar en un formato valido email@.com",Toast.LENGTH_SHORT).show();
-                } else if(!comprobarEmail(pEmail,pPass)){
-                    mostrarDialogPass();
-                }else{
-                    finalizarActividad();
-                }
+        @Override
+        public void onClick(View view) {
+            String pEmail=email.getText().toString();
+            String pPass=pass.getText().toString();
+            if(email.equals(" ")|| pass.equals(" ")){
+                createSimpleDialog();
+            }else if(!Gestor.getGestor().esEmail(pEmail)){
+                Toast.makeText(getApplicationContext(),"el email debe estar en un formato valido email@.com",Toast.LENGTH_SHORT).show();
+            } else if(!comprobarEmail(pEmail,pPass)){
+                mostrarDialogPass();
+            }else{
+                finalizarActividad();
             }
-        });
-        registrarse=findViewById(R.id.registrarL);
+        }
+    });
+    registrarse=findViewById(R.id.registrarL);
         registrarse.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-              finalizar();
-            }
-        });
-
-
-    }
+        @Override
+        public void onClick(View view) {
+            finalizar();
+        }
+    });
+}
 
     public void selectColumnas() {
-        ConexionSQLiteHelper conn= new ConexionSQLiteHelper(this,"bd Usuario",null,1);
+        ConexionSQLiteHelper conn= new ConexionSQLiteHelper(this,"bdUsuario",null,1);
         SQLiteDatabase db=conn.getWritableDatabase();
 
         //hacemos una query porque queremos devolver un cursor
@@ -84,7 +83,6 @@ public Button registrarse;
         Cursor cursor = db.rawQuery(selectQuery, null);
         cursor.moveToFirst();
         while (!cursor.isAfterLast()) {
-
             String email=cursor.getString(0);
             System.out.println(email);
             String pas=cursor.getString(1);
@@ -94,10 +92,8 @@ public Button registrarse;
             GestorUsuario.getSingletonInstance().getLu().add(new Usuario(email,pas,nacionalidad));
             cursor.moveToNext();
         }
-
         cursor.close();
         // Una vez obtenidos todos los datos y cerrado el cursor
-
     }
 
     public boolean comprobarEmail(String pEmail,String pPass){
@@ -111,26 +107,15 @@ public Button registrarse;
             if(unUsu.getEmail().equals(pEmail)&& unUsu.getPassword().equals(pPass)){
                 esta=true;
             }
-
         }
-        if(esta){
-            return esta;
-        }else{
-            return esta;
-        }
-
+        return esta;
     }
-
-
 
     private void mostrarDialogPass() {
         FragmentManager fm = getSupportFragmentManager();
         PassIncorrectaDialog alertDialog = new PassIncorrectaDialog();
         alertDialog.show(fm, "fragment");
-
     }
-
-
 
     private void finalizarActividad() {
         //Lanzar actividad
@@ -139,6 +124,7 @@ public Button registrarse;
         //Finalizar actividad
         finish();
     }
+
     private void finalizar() {
         //Lanzar actividad
         Intent intent = new Intent(this, Registro.class);
@@ -160,10 +146,6 @@ public Button registrarse;
                                 dialog.cancel();
                             }
                         });
-
-
         return builder.create();
     }
-
-
 }

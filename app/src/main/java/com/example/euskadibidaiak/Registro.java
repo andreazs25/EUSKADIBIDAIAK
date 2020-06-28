@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -23,11 +24,12 @@ import java.util.Iterator;
 import java.util.List;
 
 public class Registro extends AppCompatActivity {
-  public  EditText Email;
+    public  EditText Email;
     public  EditText Pass;
     public EditText Nacionalidad;
-   public Button registar;
+    public Button registar;
     public Button volver;
+    public boolean registrado;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -47,14 +49,15 @@ public class Registro extends AppCompatActivity {
                     Toast.makeText(getApplicationContext(),"por favor rellene todos los campos",Toast.LENGTH_SHORT).show();
                 }else if(!Gestor.getGestor().esEmail(email)){
                     Toast.makeText(getApplicationContext(),"el email debe estar en un formato valido email@,com",Toast.LENGTH_SHORT).show();
-                }else if( comprobarEmail(email,pass)) {
-
-                    Toast.makeText(getApplicationContext(), "este email ya esta registrado", Toast.LENGTH_SHORT).show();
                 }else{
                     registar(email,pass,Naci);
-                  finalizarActividad();
+                    //En caso de que no este el email en la BD
+                    if (registrado == false) {
+                        finalizarActividad();
+                    }else {
+                        Email.setBackgroundColor(Color.parseColor("#ff0000"));
+                    }
                 }
-
             }
         });
         volver=findViewById(R.id.buttonvolver);
@@ -65,21 +68,20 @@ public class Registro extends AppCompatActivity {
     }
 });
     }
-
-    public void registar(String email,String clave,String nacionalidad){
-        ConexionSQLiteHelper conn= new ConexionSQLiteHelper(this,"bd Usuario",null,1);
+//insertamos a los usuarios nuevos
+    public void registar(String pEmail,String pClave,String pNacionalidad){
+        ConexionSQLiteHelper conn= new ConexionSQLiteHelper(this,"bdUsuario",null,1);
         SQLiteDatabase db=conn.getWritableDatabase();
-        /**
-        ContentValues values=new ContentValues();
-        values.put(Utilidades.CAMPO_EMAIL,email);
-        values.put(Utilidades.CAMPO_PASS,pas);
-        values.put(Utilidades.CAMPO_NACIONALIDAD,nacionalidad);
-        Long emailResul=db.insert(Utilidades.TABLA_USUARIO,null,values);
-        Toast.makeText(getApplicationContext(),"email registro:"+emailResul,Toast.LENGTH_SHORT).show();
-        db.close();
-**/
-        db.execSQL("INSERT INTO Usuario (email,clave,nacionalidad) VALUES (email,clave,nacionalidad) ");
-        Toast.makeText(getApplicationContext(),"email registro hecho",Toast.LENGTH_SHORT).show();
+        String sentencia = " ('"+pEmail+"','"+pClave+"','"+pNacionalidad+"')";
+        try {
+                db.execSQL("INSERT INTO Usuario (email,clave,nacionalidad) VALUES "+sentencia);
+                Toast.makeText(getApplicationContext(),"email registro hecho",Toast.LENGTH_SHORT).show();
+                registrado = false;
+            }catch(Exception e) {
+                registrado = true;
+                Toast.makeText(getApplicationContext(),"El email introducido ya está en la BD.",Toast.LENGTH_SHORT).show();
+                e.printStackTrace();
+        }
         db.close();
     }
     private void finalizarActividad() {
@@ -133,8 +135,5 @@ public class Registro extends AppCompatActivity {
         }else{
             return esta;
         }
-
     }
-
-
 }

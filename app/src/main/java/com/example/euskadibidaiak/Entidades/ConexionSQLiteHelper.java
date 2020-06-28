@@ -19,8 +19,19 @@ public class ConexionSQLiteHelper extends SQLiteOpenHelper {
         db.execSQL(" CREATE TABLE " + Utilidades.TABLA_USUARIO+ " (" +
                 Utilidades.CAMPO_EMAIL + " TEXT PRIMARY KEY, " +
                 Utilidades.CAMPO_PASS + " TEXT NOT NULL, " +
-                Utilidades.CAMPO_NACIONALIDAD + " TEXT NOT NULL);"
-        );
+                Utilidades.CAMPO_NACIONALIDAD + " TEXT NOT NULL);");
+
+        db.execSQL(" CREATE TABLE " + Utilidades.TABLA_LUGARES+ " (" +
+                Utilidades.CAMPO_PROVINCIA + " TEXT NOT NULL, " +
+                Utilidades.CAMPO_LUGAR + " TEXT NOT NULL, " + Utilidades.CAMPO_VALORACION.toString() + " INTEGER NOT NULL, "
+                +Utilidades.CAMPO_EMAIL_USUARIO+ " TEXT NOT NULL, " +
+                " FOREIGN KEY (" +Utilidades.CAMPO_EMAIL_USUARIO+ ") REFERENCES "+Utilidades.TABLA_USUARIO+"("+Utilidades.CAMPO_EMAIL+"));");
+
+
+
+
+
+
 
     }
 
