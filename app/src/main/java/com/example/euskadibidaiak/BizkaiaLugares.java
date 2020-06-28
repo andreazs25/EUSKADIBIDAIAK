@@ -105,7 +105,7 @@ valoB.setOnRatingBarChangeListener(new RatingBar.OnRatingBarChangeListener() {
         //Finalizar actividad
         finish();
     }
-
+//creamos las notificaciones
     private void createNotificationChannel(){
         if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.O){
             CharSequence name = "Noticacion";
@@ -114,7 +114,7 @@ valoB.setOnRatingBarChangeListener(new RatingBar.OnRatingBarChangeListener() {
             notificationManager.createNotificationChannel(notificationChannel);
         }
     }
-
+    //creamos las notificaciones
     private void createNotification(){
         final  int NOTIFICACION_ID = 0;
         NotificationCompat.Builder builder = new NotificationCompat.Builder(getApplicationContext(),"NOTIFICACION");

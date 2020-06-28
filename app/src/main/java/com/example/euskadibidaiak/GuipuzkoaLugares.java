@@ -23,7 +23,7 @@ public class GuipuzkoaLugares extends AppCompatActivity {
     public Button guardar;
     public Button volver;
     public boolean insertado;
-   // public String pUsuario="paco";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -68,6 +68,7 @@ public class GuipuzkoaLugares extends AppCompatActivity {
         });
 
     }
+    //valoramos el lugar y guardamos la valoracion asi como los datos
     public void insert(String pP,String pL,String pValo,String emailUsuario){
         ConexionSQLiteHelper conn= new ConexionSQLiteHelper(this,"bdUsuario",null,1);
         SQLiteDatabase db=conn.getWritableDatabase();

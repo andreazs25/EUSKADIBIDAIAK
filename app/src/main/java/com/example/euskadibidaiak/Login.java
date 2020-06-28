@@ -75,7 +75,7 @@ public Button registrarse;
         }
     });
 }
-
+//Hacemos la select
     public void selectColumnas() {
         ConexionSQLiteHelper conn= new ConexionSQLiteHelper(this,"bdUsuario",null,1);
         SQLiteDatabase db=conn.getWritableDatabase();
@@ -97,7 +97,7 @@ public Button registrarse;
         cursor.close();
         // Una vez obtenidos todos los datos y cerrado el cursor
     }
-
+//comprobamos el email
     public boolean comprobarEmail(String pEmail,String pPass){
         selectColumnas();
         Iterator<Usuario> iterator = GestorUsuario.getSingletonInstance().getLu().iterator();
@@ -112,7 +112,7 @@ public Button registrarse;
         }
         return esta;
     }
-
+//Dialogo para indicar la contraseña erronea
     private void mostrarDialogPass() {
         FragmentManager fm = getSupportFragmentManager();
         PassIncorrectaDialog alertDialog = new PassIncorrectaDialog();
@@ -134,7 +134,7 @@ public Button registrarse;
         //Finalizar actividad
         finish();
     }
-
+//Verifica que los campos no esten vacios
     public AlertDialog createSimpleDialog() {
         final AlertDialog.Builder builder = new AlertDialog.Builder(this);
 
@@ -150,7 +150,7 @@ public Button registrarse;
                         });
         return builder.create();
     }
-
+//generamos la session
     private void sesion(String user, String pPassword) {
         //Proceso de login
         SharedPreferences pref = getSharedPreferences("MyPref", Context.MODE_PRIVATE);

@@ -16,6 +16,7 @@ public class Gestor {
         }
         return miGestor;
     }
+    //metodo utilizado para validar el login
     public boolean esEmail(String correo) {
         // Patron de validar el email
         String emailPattern = "^[_a-z0-9-]+(\\.[_a-z0-9-]+)*@"

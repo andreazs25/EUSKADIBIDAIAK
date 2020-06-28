@@ -23,7 +23,7 @@ public class AlavaLugares extends AppCompatActivity {
 
     public Button volver;
     public boolean insertado;
-   // public String pUsuario="paco";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

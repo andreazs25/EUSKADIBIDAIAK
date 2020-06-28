@@ -46,7 +46,7 @@ public class CambiarContrasenia extends AppCompatActivity {
             }
         });
     }
-
+//cambiamos la contraseña usando sesion
     public void cambiarContrasenia(String pPassAntigua, String pPass){
         boolean cambiado = false;
         String pUsuario;
@@ -64,7 +64,7 @@ public class CambiarContrasenia extends AppCompatActivity {
             cambiarPassBD(pUsuario,pPass);
         }
     }
-
+//se busca al ususario
     public boolean cambiarPassSession(String pEmail,String pPassAntigua, String pPass){
         Iterator<Usuario> iterator = GestorUsuario.getSingletonInstance().getLu().iterator();
         Usuario unUsu=null;
@@ -100,7 +100,7 @@ public class CambiarContrasenia extends AppCompatActivity {
     }
 
     private void finalizarActividad() {
-        //Lanzar actividad pantalla provincias
+        //Lanzar actividad pantalla menu
         Intent intent = new Intent(this, menu.class);
         startActivity(intent);
         //Finalizar actividad

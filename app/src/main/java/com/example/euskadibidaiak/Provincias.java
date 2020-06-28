@@ -35,7 +35,7 @@ Button volvemos;
 
 }
     private void finalizarActividad() {
-        //Lanzar actividad pantalla provincias
+        //Lanzar actividad pantalla menu
         Intent intent = new Intent(this, menu.class);
         startActivity(intent);
         //Finalizar actividad

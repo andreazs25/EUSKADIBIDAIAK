@@ -12,6 +12,7 @@ public class PassIncorrectaDialog extends DialogFragment {
     public PassIncorrectaDialog(){
 
     }
+    //generamos el dialogo de aviso
     public Dialog onCreateDialog(Bundle savedInstanceState) {
         super.onCreateDialog(savedInstanceState);
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());

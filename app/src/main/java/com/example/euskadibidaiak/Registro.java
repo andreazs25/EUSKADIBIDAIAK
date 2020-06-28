@@ -91,6 +91,7 @@ public class Registro extends AppCompatActivity {
         //Finalizar actividad
         finish();
     }
+    /**
     public void cargarD() {
         ConexionSQLiteHelper conn= new ConexionSQLiteHelper(this,"bd Usuario",null,1);
         SQLiteDatabase db=conn.getWritableDatabase();
@@ -136,4 +137,5 @@ public class Registro extends AppCompatActivity {
             return esta;
         }
     }
+     **/
 }
