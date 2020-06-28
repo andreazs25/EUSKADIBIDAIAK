@@ -120,7 +120,7 @@ public Button registrarse;
 
     private void finalizarActividad() {
         //Lanzar actividad
-        Intent intent = new Intent(this, Provincias.class);
+        Intent intent = new Intent(this, menu.class);
         startActivity(intent);
         //Finalizar actividad
         finish();
