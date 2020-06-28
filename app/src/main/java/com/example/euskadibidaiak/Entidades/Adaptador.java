@@ -1,6 +1,8 @@
 package com.example.euskadibidaiak.Entidades;
 
+import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,35 +16,43 @@ import com.example.euskadibidaiak.R;
 import java.util.ArrayList;
 
 public class Adaptador extends BaseAdapter {
-    private Context context;
-    private ArrayList<Provincia> listItem;
+    private static LayoutInflater inflater = null;
+    Context contexto;
+    String[] datos;
+    int[] datosImag;
+
+
+    public Adaptador(Context contexto, String[] datos, int[] imagenes) {
+
+        this.contexto = contexto;
+        this.datos = datos;
+        this.datosImag = imagenes;
+        inflater = (LayoutInflater) contexto.getSystemService(contexto.LAYOUT_INFLATER_SERVICE);
+
+    }
+
     @Override
     public int getCount() {
-        return 0;
+        return datosImag.length;
     }
 
     @Override
-    public Object getItem(int i) {
-        return listItem.get(i);
+    public Object getItem(int position) {
+        return position;
     }
 
     @Override
-    public long getItemId(int i) {
-        return listItem.size();
+    public long getItemId(int position) {
+        return position;
     }
 
     @Override
-    public View getView(int i, View view, ViewGroup viewGroup) {
-        view= LayoutInflater.from(context).inflate(R.layout.activity_provincias,null);
-        ImageView imf=(ImageView) view.findViewById(R.id.imageBizkaia);
-       // TextView titulo=(TextView) view.findViewById();
-
-        return view;
+    public View getView(int i, View contentView, ViewGroup parent) {
+    final View vista=inflater.inflate(R.layout.elementolista,null);
+    TextView nombre=(TextView)vista.findViewById(R.id.tBizkaia);
+    ImageView imagen=(ImageView)vista.findViewById(R.id.imageBizkaia);
+    nombre.setText(datos[i]);
+    imagen.setImageResource(datosImag[i]);
+   return vista;
     }
-
-    public Adaptador(Context context, ArrayList<Provincia> listItem) {
-        this.context = context;
-        this.listItem = listItem;
-    }
-
 }
