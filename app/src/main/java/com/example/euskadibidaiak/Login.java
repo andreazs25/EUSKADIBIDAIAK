@@ -61,6 +61,7 @@ public Button registrarse;
             } else if(!comprobarEmail(pEmail,pPass)){
                 mostrarDialogPass();
             }else{
+                sesion(pEmail,pPass);
                 finalizarActividad();
             }
         }
@@ -148,4 +149,22 @@ public Button registrarse;
                         });
         return builder.create();
     }
+
+    private void sesion(String user, String pPassword) {
+        //Proceso de login
+        SharedPreferences pref = getSharedPreferences("MyPref");
+        SharedPreferences.Editor editor = pref.edit();
+        editor.putString("username", user);
+        editor.putString("password", pPassword);
+        editor.commit();
+        //Notificación de bienvenida
+        String welcome = "Bienvenid@! ," + user;
+        Toast.makeText(getApplicationContext(), welcome, Toast.LENGTH_LONG).show();
+    }
+
+    private SharedPreferences getSharedPreferences(String myPref) {
+        return getSharedPreferences(myPref);
+    }
+
+
 }
