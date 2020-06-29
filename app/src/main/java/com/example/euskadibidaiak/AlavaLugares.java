@@ -15,6 +15,8 @@ import android.widget.Toast;
 import com.example.euskadibidaiak.Entidades.ConexionSQLiteHelper;
 
 public class AlavaLugares extends AppCompatActivity {
+
+    //atributos
     public TextView alava;
     public TextView vitoria;
     public RatingBar valov;
