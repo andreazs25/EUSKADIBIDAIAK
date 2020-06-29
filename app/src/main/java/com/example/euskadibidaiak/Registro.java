@@ -91,51 +91,5 @@ public class Registro extends AppCompatActivity {
         //Finalizar actividad
         finish();
     }
-    /**
-    public void cargarD() {
-        ConexionSQLiteHelper conn= new ConexionSQLiteHelper(this,"bd Usuario",null,1);
-        SQLiteDatabase db=conn.getWritableDatabase();
 
-        //hacemos una query porque queremos devolver un cursor
-        String selectQuery = "SELECT  * FROM " + Utilidades.TABLA_USUARIO;
-        Cursor cursor = db.rawQuery(selectQuery, null);
-        cursor.moveToFirst();
-        while (!cursor.isAfterLast()) {
-
-            String email=cursor.getString(0);
-            System.out.println(email);
-            String pas=cursor.getString(1);
-            System.out.println(pas);
-            String nacionalidad=cursor.getString(2);
-            System.out.println(nacionalidad);
-            GestorUsuario.getSingletonInstance().getLu().add(new Usuario(email,pas,nacionalidad));
-            cursor.moveToNext();
-        }
-
-        cursor.close();
-        // Una vez obtenidos todos los datos y cerrado el cursor, devolvemos la
-        // lista.
-
-    }
-
-    public boolean comprobarEmail(String pEmail,String pPass){
-        cargarD();
-        Iterator<Usuario> iterator = GestorUsuario.getSingletonInstance().getLu().iterator();
-        Usuario unUsu=null;
-        boolean esta=false;
-
-        while (iterator.hasNext() && !esta) {
-            unUsu = iterator.next();
-            if(unUsu.getEmail().equals(pEmail)&& unUsu.getPassword().equals(pPass)){
-                esta=true;
-            }
-
-        }
-        if(esta){
-            return esta;
-        }else{
-            return esta;
-        }
-    }
-     **/
 }

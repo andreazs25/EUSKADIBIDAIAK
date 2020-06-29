@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.NotificationCompat;
 import androidx.core.app.NotificationManagerCompat;
 
+import android.app.Activity;
 import android.app.Notification;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
@@ -47,7 +48,6 @@ public boolean insertado;
         String bilboo=bilbaoo.getText().toString();
         Integer valoBi=valoB.getNumStars();
         volver=findViewById(R.id.volver);
-
 
 
 
@@ -130,6 +130,5 @@ valoB.setOnRatingBarChangeListener(new RatingBar.OnRatingBarChangeListener() {
         NotificationManagerCompat notificationManagerCompat = NotificationManagerCompat.from(getApplicationContext());
         notificationManagerCompat.notify(NOTIFICACION_ID, builder.build());
     }
-
 
 }
